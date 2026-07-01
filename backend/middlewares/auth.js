@@ -17,7 +17,7 @@ const authMiddleware = (req, res, next) => {
     req.userId = decoded.id; // store userId in request
     next();
   } catch (err) { 
-    console.error('JWT verification failed:', err);
+    console.warn(`JWT verification failed: ${err.message}`);
     return res.status(403).json({ success: false, message: 'Invalid token' });
   }
 };

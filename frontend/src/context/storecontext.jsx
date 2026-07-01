@@ -119,6 +119,24 @@ const loadCartData = async (userToken) => {
     loadData();
   }, []);
 
+  // Handle token expiration / invalid token globally
+  useEffect(() => {
+    const interceptor = axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+          localStorage.removeItem("token");
+          setToken("");
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.response.eject(interceptor);
+    };
+  }, []);
+
   const contextValue = {
     food_list: foodList,
     cartitems,

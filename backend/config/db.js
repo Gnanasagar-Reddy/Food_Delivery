@@ -7,6 +7,6 @@ export const connectToMongoDB = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("✅ Database Connected: Food_Del");
   } catch (err) {
-    console.error("❌ Connection Error:", err.message);
+    console.error("❌ Connection Error:", err.message); 
   }
 };

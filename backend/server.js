@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 4000;
 
 // Connect to MongoDB
 connectToMongoDB()
-    .then(() => console.log("✅ MongoDB connected"));
 
 // MIDDLEWARES
 app.use(cors());
